@@ -77,7 +77,7 @@ function App() {
 
   return (
     <>
-      <SearchBar query={query} onSubmit={handleSubmit} setQuery={setQuery} />
+      <SearchBar onSubmit={handleSubmit} />
       {isLoading && <Loader />}
       {photos.length > 0 && (
         <ImageGallery items={photos} openModal={openModal} />
