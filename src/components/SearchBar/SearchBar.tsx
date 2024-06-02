@@ -1,10 +1,16 @@
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function SearchBar({ onSubmit }) {
-  const handleSubmit = event => {
+interface SearchBarProps {
+  onSubmit: (value: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const value = event.target.elements.search.value.trim();
+    const value = (
+      event.target as HTMLFormElement
+    ).elements.search.value.trim();
     if (value.trim() === '') {
       // Відображення сповіщення про необхідність введення тексту для пошуку
       toast.error('Please enter a search query!');
@@ -31,13 +37,6 @@ export default function SearchBar({ onSubmit }) {
       </form>
     </header>
   );
-}
+};
 
-/*   const handleChange = event => {
-    setQuery(event.target.value);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    onSubmit(query);
-  }; */
+export default SearchBar;
