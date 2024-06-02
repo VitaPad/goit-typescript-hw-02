@@ -1,4 +1,3 @@
-import { Image } from '../App/App.types';
 export interface AppModalProps {
   isOpen: boolean;
   onRequestClose: () => void;

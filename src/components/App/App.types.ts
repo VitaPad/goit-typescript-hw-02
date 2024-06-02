@@ -1,6 +1,9 @@
 export interface Image {
-  title: any;
+  title: string;
   id: string;
-  urls: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
   alt: string;
 }

@@ -7,22 +7,24 @@ interface ImageGalleryProps {
   openModal: (imageUrl: string) => void;
 }
 
-export default function ImageGallery({ items, openModal }: ImageGalleryProps) {
+const ImageGallery: React.FC<ImageGalleryProps> = ({
+  items,
+  openModal,
+}: ImageGalleryProps) => {
   return (
     <ul className={css.list}>
       {items.map(item => (
         <li key={item.id}>
           <div>
             <ImageCard
-              urls={item.urls}
-              alt={item.title}
-              openModal={() => openModal(item.urls)}
+              image={item}
+              openModal={imageUrl => openModal(imageUrl)}
             />
           </div>
         </li>
       ))}
     </ul>
   );
-}
+};
 
-/* openModal={() => openModal(item.urls.regular)} */
+export default ImageGallery;

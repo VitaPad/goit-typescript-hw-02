@@ -1,17 +1,23 @@
 import css from './ImageCard.module.css';
+import { Image } from '../App/App.types';
+interface ImageCardProps {
+  image: Image; // Використовуємо інтерфейс Image з App.types.ts
+  openModal: (url: string) => void;
+}
 
-export default function ImageCard({ urls, alt, openModal }) {
+const ImageCard: React.FC<ImageCardProps> = ({ image, openModal }) => {
   const handleClick = () => {
-    openModal(urls.regular);
+    openModal(image.urls.regular);
   };
   return (
     <div className={css.container}>
       <img
         className={css.img}
-        src={urls.small}
-        alt={alt}
+        src={image.urls.small}
+        alt={image.alt}
         onClick={handleClick}
       />
     </div>
   );
-}
+};
+export default ImageCard;
