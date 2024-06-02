@@ -1,18 +1,16 @@
 import css from './SearchBar.module.css';
 import { FormEvent, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
 interface SearchBarProps {
   onSubmit: (query: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   const formRef = useRef<HTMLFormElement>(null);
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const form = formRef.current;
     if (!form) return;
-
     const queryInput = form.querySelector<HTMLInputElement>(
       'input[name="search"]'
     );
@@ -20,14 +18,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
       toast.error('Please enter a search term!');
       return;
     }
-
     onSubmit(queryInput.value);
     form.reset();
   };
 
   return (
     <header className={css.header}>
-      <form onSubmit={handleSubmit}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <input
           className={css.input}
           type="text"
