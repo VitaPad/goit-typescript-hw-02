@@ -57,10 +57,10 @@ function App() {
     if (query === '') {
       return;
     }
-    async function getPhotos() {
+    async function getPhotos(): Promise<void> {
       try {
         setLoading(true);
-        const data = await fetchPhotos(query, page);
+        const data: Image[] = await fetchPhotos(query, page);
         setPhotos(prevPhotos => {
           return [...prevPhotos, ...data];
         });
@@ -77,7 +77,7 @@ function App() {
 
   return (
     <>
-      <SearchBar query={query} onSubmit={handleSubmit} />
+      <SearchBar query={query} onSubmit={handleSubmit} setQuery={setQuery} />
       {isLoading && <Loader />}
       {photos.length > 0 && (
         <ImageGallery items={photos} openModal={openModal} />
@@ -93,7 +93,9 @@ function App() {
         imageUrl={selectedImageUrl}
         style={customStyles}
       />
-      {showBtn && <LoadMoreBtn onClick={handleLoadMore} />}
+      {showBtn && (
+        <LoadMoreBtn onClick={handleLoadMore} openButton={openButton} />
+      )}
     </>
   );
 }

@@ -16,7 +16,6 @@ const ImageModal: React.FC<AppModalProps> = ({
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       className={css.container}
-      contentLabel="Example Modal"
       style={{
         ...style,
         overlay: {
