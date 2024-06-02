@@ -77,7 +77,7 @@ function App() {
 
   return (
     <>
-      <SearchBar query={query} onSubmit={handleSubmit} setQuery={setQuery} />
+      <SearchBar onSubmit={handleSubmit} />
       {isLoading && <Loader />}
       {photos.length > 0 && (
         <ImageGallery items={photos} openModal={openModal} />
@@ -90,13 +90,10 @@ function App() {
       <ImageModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Example Modal"
         imageUrl={selectedImageUrl}
         style={customStyles}
       />
-      {showBtn && (
-        <LoadMoreBtn onClick={handleLoadMore} openButton={openButton} />
-      )}
+      {showBtn && <LoadMoreBtn onClick={handleLoadMore} />}
     </>
   );
 }
